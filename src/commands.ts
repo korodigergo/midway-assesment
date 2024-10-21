@@ -15,3 +15,17 @@ export async function list(store: Store<RecipeType[]>, args: string[]) {
   console.log('Your recipes:');
   console.log(formatted);
 }
+
+export async function details(store: Store<RecipeType[]>, args: string[]) {
+  const givenId = parseInt(args[0])
+  if(args.length !== 1 || isNaN(givenId)){
+    throw new AppError(`The ID should be a numeric value and do not give more arguments than 1!`);
+  }
+  const recipe = new Recipe(store);
+  const recipes = await recipe.readAll();
+  for(const recipe of recipes){
+    if(recipe.id === givenId){
+      console.log(`ID: ${recipe.id}\nName: ${recipe.name}`)
+    }
+  }
+}
