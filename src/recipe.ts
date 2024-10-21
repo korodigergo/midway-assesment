@@ -5,6 +5,8 @@ export type RecipeType = {
   name: string
 }
 
+export type CreateRecipeType = Pick<RecipeType, "name">
+
 export class Recipe {
   private store;
 
@@ -14,6 +16,9 @@ export class Recipe {
 
   async readAll() {
     return await this.store.getValue();
+  }
+  async setAll(value: RecipeType[]) {
+    return await this.store.setValue(value);
   }
 }
 
