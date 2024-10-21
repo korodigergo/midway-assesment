@@ -21,5 +21,5 @@ async function main() {
 
 main()
   .then(() => console.log('Done.'))
-  .catch((error) => console.error(error.message))
+  .catch((error) => console.error(`Error: ${error.message}`))
 
